@@ -9,9 +9,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using WebAppCrud.Data;
+using EmployeeTimeTracker.Data;
 
-namespace WebAppCrud
+namespace EmployeeTimeTracker
 {
     public class Startup
     {
@@ -27,8 +27,11 @@ namespace WebAppCrud
         {
             services.AddControllersWithViews();
 
-            services.AddDbContext<WebAppCrudContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("WebAppCrudContext")));
+            services.AddDbContext<EmployeeTimeTrackerContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("EmployeeTimeTrackerContext")));
+            services.AddMvc().AddSessionStateTempDataProvider();
+            services.AddDistributedMemoryCache();
+            services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,6 +51,7 @@ namespace WebAppCrud
             app.UseStaticFiles();
 
             app.UseRouting();
+            app.UseSession();
 
             app.UseAuthorization();
 

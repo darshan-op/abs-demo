@@ -1,6 +1,6 @@
 using System;
 
-namespace WebAppCrud.Models
+namespace EmployeeTimeTracker.Models
 {
     public class ErrorViewModel
     {
